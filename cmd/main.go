@@ -62,7 +62,7 @@ func runServer(url string) {
 	handlerWithLogging := server.LoggingHandler(handler)
 
 	log.Printf("MCP server listening on %s", url)
-	log.Printf("Available tool: GetAlerts")
+	log.Printf("Available tool: GetAlerts, GetSilences")
 	if err := tools.CheckAlertManagerStatus(); err != nil {
 		log.Fatal(err)
 	}

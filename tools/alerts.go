@@ -9,14 +9,13 @@ import (
 )
 
 type GetAlertsParams struct {
-	Active      string `json:"active" jsonschema:"The status of alerts that are currently active"`
-	Silenced    string `json:"silenced" jsonschema:"The status of alerts that are currently silenced"`
-	Inhibited   string `json:"inhibited" jsonschema:"The status of alerts that are currently inhibited"`
-	Unprocessed string `json:"unprocessed" jsonschema:"The status of alerts that are unprocessed"`
+	Active      string `json:"active,omitempty" jsonschema:"The status of alerts that are currently active"`
+	Silenced    string `json:"silenced,omitempty" jsonschema:"The status of alerts that are currently silenced"`
+	Inhibited   string `json:"inhibited,omitempty" jsonschema:"The status of alerts that are currently inhibited"`
+	Unprocessed string `json:"unprocessed,omitempty" jsonschema:"The status of alerts that are unprocessed"`
 }
 
 func GetAlerts(ctx context.Context, call *mcp.CallToolRequest, arg GetAlertsParams) (*mcp.CallToolResult, any, error) {
-
 	active := arg.Active
 	if active == "" {
 		active = "false"
@@ -40,9 +39,9 @@ func GetAlerts(ctx context.Context, call *mcp.CallToolRequest, arg GetAlertsPara
 		return nil, nil, err
 	}
 	q := req.URL.Query()
-	q.Add("active", arg.Active)
-	q.Add("silenced", arg.Silenced)
-	q.Add("inhibited", arg.Inhibited)
-	q.Add("unprocessed", arg.Unprocessed)
+	q.Add("active", active)
+	q.Add("silenced", silenced)
+	q.Add("inhibited", inhibited)
+	q.Add("unprocessed", unprocessed)
 	return doRequest(req), nil, nil
 }

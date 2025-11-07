@@ -33,7 +33,7 @@ func doRequest(req *http.Request) *mcp.CallToolResult {
 	if resp.StatusCode != http.StatusOK {
 		result.IsError = true
 		result.Content = []mcp.Content{
-			&mcp.TextContent{Text: fmt.Sprintf("alertmanager retrun error: %s", err.Error())},
+			&mcp.TextContent{Text: fmt.Sprintf("alertmanager retrun error: %s", body)},
 		}
 		return result
 	}

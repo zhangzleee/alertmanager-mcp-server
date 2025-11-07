@@ -26,4 +26,13 @@ func RegisterToolAlerts(srv *mcp.Server) {
 		Description: "get alerts list from alertmanager",
 	}, tools.GetAlerts)
 
+	mcp.AddTool(srv, &mcp.Tool{
+		Name:        "get_silences",
+		Description: "get silences list from alertmanager",
+	}, tools.GetSilences)
+
+	mcp.AddTool(srv, &mcp.Tool{
+		Name:        "set_silences",
+		Description: "set silence with labels to alertmanager",
+	}, tools.SetSilence)
 }
